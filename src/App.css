@@ -55,6 +55,7 @@
   border: 0.5px solid;
   display: inline-block;
   margin: 15px;
+  background-size: cover;
 }
 .popularDishes{
   border-bottom: 1px solid gray;

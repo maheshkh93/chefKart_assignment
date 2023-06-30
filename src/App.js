@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
+
   useEffect(() => {
     fetch(
       "https://8b648f3c-b624-4ceb-9e7b-8028b7df0ad0.mock.pstmn.io/dishes/v1/"
@@ -10,8 +11,8 @@ function App() {
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        setData(data);
+      .then((d) => {
+        setData(d);
       })
       .catch((e) => {
         console.log(e.message);
@@ -39,13 +40,16 @@ function App() {
           <h5>Popular Dishes</h5>
           <div
             className="dishes"
-            // style={{
-            //   backgroundImage: `url(${data.dishes})`,
-            // }}
+            style={{
+              backgroundImage: `url(${
+                data ? data.popularDishes.map((d) => d.image) : null
+              })`,
+            }}
           ></div>
           <div className="dishes"></div>
           <div className="dishes"></div>
         </div>
+        <div>{data ? data.popularDishes.map((d) => d.name) : "loading..."}</div>
       </div>
     </div>
   );
